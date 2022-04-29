@@ -1,9 +1,9 @@
 package fp.vacunas;
 
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import fp.clinico.Persona;
 import fp.utiles.Checkers;
 
 public record Vacunacion(LocalDate fecha, String comunidad, Integer pfizer, Integer moderna,
@@ -19,7 +19,7 @@ public record Vacunacion(LocalDate fecha, String comunidad, Integer pfizer, Inte
 
 	//Restricciones
 	public Vacunacion {
-		Checkers.check("La fecha de debe ser posterior al 01/02/2021", fecha.isBefore(LocalDate.of(2021, 02, 01)));
+		Checkers.check("La fecha de debe ser posterior al 01/01/2021", fecha.isAfter(LocalDate.of(2020, 01, 01)));
 	}
 
 	//Criterio de orden
@@ -44,13 +44,13 @@ public record Vacunacion(LocalDate fecha, String comunidad, Integer pfizer, Inte
 		Checkers.checkNoNull("Cadena vacia", text);
 		String[] partes = text.split(";");
 		Checkers.check("Faltan datos", partes.length==7);
-		LocalDate fecha = LocalDate.parse(partes[0], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		String comunidad = partes[1];
-		Integer pfizer = Integer.parseInt(partes[2]);
-		Integer moderna = Integer.parseInt(partes[3]);
-		Integer astrazeneca = Integer.parseInt(partes[4]);
-		Integer janseen = Integer.parseInt(partes[5]);
-		Integer numeroDePersonas = Integer.parseInt(partes[6]);
+		LocalDate fecha = LocalDate.parse(partes[0].trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		String comunidad = partes[1].trim();
+		Integer pfizer = Integer.parseInt(partes[2].trim());
+		Integer moderna = Integer.parseInt(partes[3].trim());
+		Integer astrazeneca = Integer.parseInt(partes[4].trim());
+		Integer janseen = Integer.parseInt(partes[5].trim());
+		Integer numeroDePersonas = Integer.parseInt(partes[6].trim());
 		return Vacunacion.of(fecha, comunidad, pfizer, moderna, astrazeneca, janseen, numeroDePersonas);
 
 	}

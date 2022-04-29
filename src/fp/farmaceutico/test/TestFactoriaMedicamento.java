@@ -1,10 +1,12 @@
 package fp.farmaceutico.test;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import fp.farmaceutico.FactoriaMedicamentos;
 import fp.farmaceutico.Medicamento;
 import fp.farmaceutico.TipoMedicamento;
+
 
 public class TestFactoriaMedicamento {
 
@@ -22,6 +24,14 @@ public class TestFactoriaMedicamento {
 	System.out.println(m1.getFechaCatalogo());
 	Medicamento m2 = FactoriaMedicamentos.parseaMedicamente("efavirenz,quimico,Y212XXA,Actavis Mid Atlantic LLC,90.0,1848,04/12/2019");
 	System.out.println(m2);
+	
+	//====================================================================================//
+	
+	String ruta = "data/medicamentos.csv";
+	List<Medicamento> lista = FactoriaMedicamentos.leeFichero(ruta);
+	for(Medicamento e:lista) {
+		System.out.println(e);
+	}
 	}
 
 
