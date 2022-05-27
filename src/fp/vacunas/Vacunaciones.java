@@ -63,6 +63,7 @@ public class Vacunaciones {
 	//====================================================================================//
 
 	public Map<LocalDate, List<Vacunacion>> vacunacionesPorFecha() {
+		//
 		return this.vacunaciones.stream().
 				collect(Collectors.groupingBy(
 						Vacunacion::fecha));
@@ -71,13 +72,15 @@ public class Vacunaciones {
 	//====================================================================================//
 
 	public Map<String, Integer> maximoNumTotalVacunasporComunidad() {
-		Map<String, Optional<Vacunacion>> aux = this.vacunaciones.stream().
+		//
+		return this.vacunaciones.stream().
 				collect(Collectors.groupingBy(
-				Vacunacion::comunidad,
-						Collectors.maxBy(
-								Comparator.comparing(Vacunacion::numeroTotal))));
-		
-		return null;
+						Vacunacion::comunidad,
+						Collectors.collectingAndThen(
+								Collectors.maxBy(Comparator.comparing(Vacunacion::numeroTotal)),
+								x->x.get().numeroTotal()
+								)
+						));
 	}
 	
 	
