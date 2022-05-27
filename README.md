@@ -1,5 +1,5 @@
 # Proyecto del Segundo Cuatrimestre Fundamentos de Programación (Curso  \<21\>/\<22\>)
-Autor: Enrique García Abadía   uvus:enrgaba
+Autor: Enrique García Abadía   uvus:enrgaraba
 
 Aquí debes añadir la descripción del dataset y un enunciado del dominio del proyecto.
 
