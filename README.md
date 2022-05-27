@@ -1,100 +1,252 @@
-# Proyecto del Segundo Cuatrimestre Fundamentos de ProgramaciÃ³n (Curso  \<XX\>/\<YY\>)
-Autor/a: \<nombre del autor\>   uvus:\<uvus del autor\>
+# Proyecto del Segundo Cuatrimestre Fundamentos de Programación (Curso  \<21\>/\<22\>)
+Autor: Enrique García Abadía   uvus:enrgaba
 
-AquÃ­ debes aÃ±adir la descripciÃ³n del dataset y un enunciado del dominio del proyecto.
+Aquí debes añadir la descripción del dataset y un enunciado del dominio del proyecto.
 
 
 ## Estructura de las carpetas del proyecto
 
-* **/src**: Contiene los diferentes archivos que forman parte del proyecto. Debe estar estructurado en los siguentes paquetes
-  * **fp.\<dominio\>**: Paquete que contiene los tipos del proyecto.
-  * **fp.\<dominio\>.test**: Paquete que contiene las clases de test del proyecto.
-  * **fp.common**: Paquete que contiene los tipos auxiliares del proyecto
-  * **fp.utiles**:  Paquete que contiene las clases de utilidad. 
-* **/data**: Contiene el dataset o datasets del proyecto
-    * **\<dataset1.csv\>**: AÃ±ade una descripciÃ³n genÃ©rica del dataset.
-    * **\<dataset2.csv\>**: AÃ±ade una descripciÃ³n del resto de datasets que puedas tener.
-    
-## Estructura del *dataset*
+* **src**: Contiene los diferentes archivos que forman parte del proyecto. Debe estar estructurado en los siguentes paquetes
+     * *fp.factoriamedicamentos*: Paquete que contiene los tipos del proyecto.
+     * *fp.factoriavacunaciones*: Paquete que contiene los tipos del proyecto.
+     * *fp.clinico*: Paquete que contiene los tipos del proyecto.
+     * *fp.farmaceutico*: Paquete que contiene los tipos del proyecto.
+     * *fp.farmaceutico.test*: Paquete que contiene las clases de test de "fp.farmacutico.
+     * *fp.utiles*:  Paquete que contiene las clases de utilidad. 
+     * *fp.vacunas*: Paquete que contiene el módulo "Vacunacion".
 
-AquÃ­ debes describir la estructura del dataset explicando quÃ© representan los datos que contiene y la descripciÃ³n de cada una de las columnas. Incluye tambiÃ©n la URL del dataset original.
+* **data**: Contiene el dataset o datasets del proyecto
+     * *cca_vacunas_3.csv*: Informacion sobre la vacunacion detodas las comunidades autónomas.
+     * *estudio_clinico.csv*: Estudio clínico de la población.
+     * *medicamentos.csv*: Informacion sobre medicamentos.
+     
+## Estructura de los datasets
 
-El dataset estÃ¡ compuesto por \<N\> columnas, con la siguiente descripciÃ³n:
+Encontramos 3 datasets en este proyecto: ccaa_vacunas, compuesto por 7 columnas; estudio_clinico, compuesto por 7 columnas; y por ultimo medicamentos, compuesto por 7 columnas.
 
-* **\<columna 1>**: de tipo \<tipo\>, representa....
-* **\<columna 2>**: de tipo \<tipo\>, representa....
-....
+* **ccaa_vacunas_3.csv**:
+     * *columna 1*: de tipo LocalDate (fecha_publicacion).
+     * *columna 2*: de tipo String (CCAA).
+     * *columna 3*: de tipo Integer (Pfizer).
+     * *columna 4*: de tipo Integer (Moderna).
+     * *columna 5*: de tipo Integer (AstraZeneca).
+     * *columna 6*: de tipo Integer (Janssen).
+     * *columna 7*: de tipo Integer (Personas_pauta_completa).
 
+* **estudio_clinico.csv**:
+     * *columna 1*: de tipo Integer (Id).
+     * *columna 2*: de tipo String (Genero).
+     * *columna 3*: de tipo Integer (Edad).
+     * *columna 4*: de tipo Boolean (Hipertension).
+     * *columna 5*: de tipo Boolean (FactordeRiesgo).
+     * *columna 6*: de tipo Enum (TipoResidencia).
+     * *columna 7*: de tipo Double (Glucosa).
+
+* **medicamentos.csv**:
+     * *columna 1*: de tipo String (Nombre_medicamento).
+     * *columna 2*: de tipo String (Tipo_medicamento).
+     * *columna 3*: de tipo String (Codigo_enfermedad).
+     * *columna 4*: de tipo String (Farmaceutica).
+     * *columna 5*: de tipo Double (Puntuacion).
+     * *columna 6*: de tipo Integer (Indice_somatico).
+     * *columna 7*: de tipo LocalDate (Fecha_catalogo).
+	
 ## Tipos implementados
 
-Describe aquÃ­ los tipos que usas en tu proyecto.
+**Los tipos implementados son:**
 
-### Tipo Base
-DescripciÃ³n breve del tipo base.
+* **Tipo Checkers:** Class.
+* **Tipo EstudioClinico:** Interface.
+* **Tipos EstudioClinicoBucles:** Class.
+* **Tipos EstudioClinicoStream:** Class.
+* **Tipo Paciente:** Record.
+* **Tipo PacienteEstudio:** Record.
+* **Tipo Persona:** Record.
+* **Tipos TestEstudioClinicoBucles:** Módulo test de la clase EstudioClinicoBucles.
+* **Tipos TestEstudioClinicoStream:** Módulo test de la clase EstudioClinicoStream.
+* **Tipo TipoResidencia:** Enumerado.
+* **Tipo FactoriaMedicamentos:** Clase, contiene el parseo de la clase Medicamento.
+* **Tipo Medicamento:** Clase.
+* **Tipo TipoMedicamento:** Enumerado.
+* **Tipo TestMedicamentos:** Clase. Modulo test de la clase Medicamento y FactoriaMedicamentos.
+* **Tipo Vacunacion:** Record
 
-**Propiedades**:
+### Tipo Persona:
+* **Persona:**
+     * **Propiedades:**
+      * nombre, de tipo String.
+      * apellidos, de tipo String.
+      * dni, de tipo String.
+      * fecha de nacimiento, de tipo LocalDate.
+      * edad, de tipo Integer. (Derivada a partir de la fecha de nacimiento).
+     * **Restricciones:**
+       * La fecha de nacimiento debe ser anterior a la fecha actual.
+       * El dni debe ser una cadena con ocho dígitos y seguidos de una letra.
+     * **Representación como cadena:** por defecto asociado al record.
+     * **Criterio de igualdad:** por defecto asociado al record.
+     * **Orden natural:** por dni.
+     * **Métodos de factoría adicionales:**
+       * Método static of: Recibe nombre, apellidos, dni y fecha de nacimiento y devuelve una persona.
+       * Método static parse: Recibe una cadena con un formato específico y devuelve una persona.Ejemplo de cadena: “Juan, García Rodríguez, 12755078Z, 20/03/1965”.
+       * Se incluye un metodo main para comprobar el funcionamiento del metodo parse.
+     
+     
+### Tipo Paciente:
+* **Paciente:**
+     * **Propiedades:**
+      * persona, de tipo Persona.
+      * código de ingreso, de tipo String.
+      * fecha y hora de ingreso, de tipo LocalDateTime.
+      * fecha de ingreso, de tipo LocalDate. (Derivada a partir de la fecha y hora de ingreso)
+      * hora de ingreso, de tipo String. (Derivada a partir de la fecha y hora de ingreso).Ejemplo de cadena: “15:03”. Es decir, la hora y los minutos tienen que tener dos dígitos. No valdría escribir “15:3”.
+     * **Restricciones:**
+       * La fecha y hora de ingreso debe ser anterior o igual a la fecha actual.
+     * **Representación como cadena:** por defecto asociado al record.
+     * **Criterio de igualdad:** por defecto asociado al record.
+     * **Métodos de factoría adicionales:**
+       * Método static of: Recibe nombre, apellidos, dni, fecha de nacimiento, código y fecha y hora de ingreso y devuelve un paciente.
+       * Método static of: Recibe un objeto persona, un código y una fecha y hora de ingreso y devuelve un paciente.
 
-- _propiedad1_, de tipo \<Tipo1\>, consultable. 
-- _propiedad2_, de tipo \<Tipo2\>, consultable y modificable. 
-- ...
-- 
-**Constructores**: 
+### Tipo PacienteEstudio:
+* **PacienteEstudio:**
+     * **Propiedades:**
+      * id, de tipo String.
+      * genero, de tipo String.
+      * edad, de tipo Double.
+      * hipertensión, de tipo Boolean.
+      * enfermedad del corazón, de tipo Boolean.
+      * tipo de residencia, enumerado TipoResidencia, cuyos valores son rural o urbana.
+      * nivel medio de glucosa, de tipo Double.
+      * factor de riesgo, de tipo Boolean. (Derivada, si tiene hipertensión y más de 40 años se considerará que tiene factor de riesgo).
+     * **Restricciones:**
+      * La edad tiene que ser mayor o igual que cero y menor o igual que 130.
+      * El nivel medio de glucosa tiene que ser mayor o igual que cero.
+     * **Representación como cadena:** informa del id y la edad del paciente.
+     * **Criterio de igualdad:** por defecto asociado al record.
+     * **Criterio de orden:** según la edad y el id.
+     * **Métodos de factoría adicionales:**
+       * Método static of: Recibe valores para cada propiedad básica y devuelve un objeto del tipo.
+       * Método static parse: Recibe una cadena con un formato especificado y y devuelve un objeto del tipo. Ejemplo de cadena: “6306;Male;80;false;false;URBANA;83.84”
+       * Se incluye un metodo main para comprobar el funcionamiento del metodo parse.
 
-- C1: DescripciÃ³n del constructor 1.
-- C2: DescripciÃ³n del constructor 2.
-- ...
+### Tipo Vacunacion:
+* **Vacunacion:**
+     * **Propiedades:**
+      * fecha, de tipo LocalDate.
+      * comunidad, de tipo String.
+      * pfizer, de tipo Integer.
+      * moderna, de tipo Integer.
+      * astrazeneca, de tipo Integer.
+      * janssen de tipo Integer.
+      * número de personas, de tipo Integer.
+      * número total, de tipo Integer. (Derivada, siendo la suma de dosis de Pfizer, moderna, astrazeneca y janssen).
+     * **Restricciones:**
+      * La fecha de debe ser posterior al 01/02/2021.
+     * **Representación como cadena:** por defecto asociado al record.
+     * **Criterio de igualdad:** por defecto asociado al record.
+     * **Orden natural:** por comunidad y en caso de igualdad por fecha.
+     * **Métodos de factoría adicionales:**
+       * Método static of: Recibe valores para cada propiedad básica y devuelve un objeto del tipo.
+       * Método static parse: Recibe una cadena con un formato específico y devuelve un objeto del tipo. Ejemplo de cadena: “04/01/2021;Andalucía;140295;0;0;0;0”.
+       * Se incluye un metodo main para comprobar el funcionamiento del metodo parse.
+				
+				
+				
+## Tipo Medicamento: (Clase)
+* **Medicamento:**
+     * **Propiedades:**
+      * nombre del medicamento, de tipo String, observable.
+      * tipo de medicamento, enumerado de tipo TipoMedicamento, observable. Los valores del enumerado son anatómico, químico y terapéutico.
+      * código de la enfermedad, de tipo String, observable.
+      * farmacéutica, de tipo String, observable.
+      * puntación, de tipo Double, observable.
+      * índice somático, de tipo Integer, observable.
+      * fecha de catálogo, de tipo LocalDate, observable y modificable.
+      * tratar enfermedad, de tipo Boolean. (Derivada, siendo cierta si el código de la enfermedad coincide con un parámetro de tipo cadena que reciben como argumento la propiedad).
+     * **Restricciones:**
+        * La puntación tiene que ser mayor estricta que cero.
+        * El índice somático tiene que ser mayor o igual que 1000.
+        * La fecha de catálogo tiene que ser posterior al 01/01/2015.
+     * **Representación como cadena:** según el nombre del medicamento y de la farmacéutica.
+     * **Criterio de igualdad:** por nombre del medicamento y farmacéutica.
+     * **Orden natural:** por nombre del medicamento y en caso de igualdad por la farmacéutica.
+		
+### Otras operaciones:
 
-**Restricciones**:
- 
-- R1: DescripciÃ³n de la restricciÃ³n 1.
-- R2: DescripciÃ³n de la restricciÃ³n 2.
-- ...
-- 
-**Criterio de igualdad**: Describir el criterio de igualdad
+*   Clase FactoriaMedicamentos: Se ha programado una clase FactoriaMedicamentos que incluye, de momento, un metodo static de nombre parseaMedicamento, que recibe una cadena con un formato especifico y devuelve un objeto del tipo Medicamento.
+*   Clase TestFactoriaMedicamentos: Se ha implementado tambien una clase de nombre TestFactoriaMedicamentos que comprueba el correcto funcionamiento del metodo anterior.
 
-**Criterio de ordenaciÃ³n**: Describir el criterio de ordenaciÃ³n (si lo hay).
 
-**Otras operaciones**:
- 
--	_mÃ©todo 1_: DescripciÃ³n del mÃ©todo 1.
-- ...
 
-#### Tipos auxiliares
-DescripciÃ³n de los tipos auxiliares que sean necesarios aÃ±adir al proyecto.
 
-### FactorÃ­a
-DescripciÃ³n breve de la factorÃ­a.
+## Tipo EstudioClinico: (Interfaz)
+* **EstudioClinico:**
+     * Estos son los métodos/operaciones a realizar:
+		
+	 public interface EstudioClinico { // Propiedades de lista
+			Integer numeroPacientes();
+			void incluyePaciente(PacienteEstudio paciente);
+			void incluyePacientes(Collection<PacienteEstudio> pacientes);
+			void eliminaPaciente(PacienteEstudio paciente);
+			Boolean estaPaciente(PacienteEstudio paciente);
+			void borraEstudio();
+	
+			// Método de factoría
+			EstudioClinico of(String nombreFichero);
+			List<PacienteEstudio> leeFichero(String nombreFichero);
+	
+			// Tratamientos secuenciales: implementaciónn funcional vs. imperativa
+			//existe, paraTodo
+			Boolean todosPacienteSonDelTipo(TipoResidencia tipo);
+			Boolean existeAlgunPacienteDelTipo(TipoResidencia tipo);
+	
+			//contador, suma, media
+			Integer numeroPacientesFactorRiesgo();
+			Double edadMediaPacientesConFactorRiesgo();
+			
+			//filtrado
+			List<PacienteEstudio> filtraPacientesPorEdad(Double edad);
+	
+			//devuelve Map que agrupa
+			Map<String,List<PacienteEstudio>> agruparPacientesEdadMayorQuePorGenero(Double edad); //devuelve Map que realiza un cálculo
+			Map< ,Long> numeroPacientesPorGenero();
+			Map< ,Double> edadMediaPacientesPorPorGenero();
 
-- _mÃ©todo 1_: DescripciÃ³n del mÃ©todo 1.
--	_mÃ©todo 2_: DescripciÃ³n del mÃ©todo 2.
+## Tipo EstudioClinicoBucles: (Clase)
+* **EstudioClinicoBucles:**
+     * Métodos de propiedades de listas.
+     * Métodos de tratamientos secuenciales.
+     * Métodos para la construcción de diccionarios o mapas
+	
+## Tipo EstudioClinicoStream: (Clase)
+* **EstudioClinicoStream:**
+     * Métodos de propiedades de listas.
+		
+## Tipo FactoriaMedicamentos: (Clase)
+* **FactoriaMedicamentos:**
+     * Contiene un método de nombre leeFichero que, dada una cadena con el nombre del fichero, devuelve una lista de objetos Medicamento.
+	
+## Tipo FactoriaVacunacion: (Clase)
+* **FactoriaVacunacion:**
+     * Contiene un método de nombre leeFichero que, dada una cadena con el nombre del fichero, devuelve una lista de objetos Vacunacion.
+		
 
-### Tipo Contenedor
-
-DescripciÃ³n breve del tipo contenedor.
-
-**Propiedades**:
-
-- _propiedad1_, de tipo \<Tipo1\>, consultable. 
-- _propiedad2_, de tipo \<Tipo2\>, consultable y modificable. 
-- ...
-- 
-**Constructores**: 
-
-- C1: DescripciÃ³n del constructor 1.
-- C2: DescripciÃ³n del constructor 2.
-- ...
-
-**Restricciones**:
- 
-- R1: DescripciÃ³n de la restricciÃ³n 1.
-- R2: DescripciÃ³n de la restricciÃ³n 2.
-- ...
-- 
-**Criterio de igualdad**: Describir el criterio de igualdad
-
-**Criterio de ordenaciÃ³n**: Describir el criterio de ordenaciÃ³n (si lo hay).
-
-**Otras operaciones**:
- 
--	_mÃ©todo 1_: DescripciÃ³n del mÃ©todo 1.
-- ...
+##  Vacunaciones: (Clase)
+* **Clase implementada en fp.vancunas**
+* **Se pide programar los siguientes métodos:**
+     * **anyadeVacunacion:** dado un objeto del tipo Vacunacion lo añade al atributo de List<Vacunacion>.
+     * **vacunacionesEntreFechas:** dadas dos fechas como parámetros de entrada, devuelve una lista con aquellas vacunaciones entre dichas fechas.
+     * **existeNumPersonasPautaCompletaPorEncimaDe:** dada una comunidad y un valor entero, indica si existen o no vacunaciones con un número de personas con la pauta completa de vacunación por encima del valor entero dado.
+     * **diaMasVacunacionesEn:** dada una comunidad, devuelve la fecha en la que hubo más personas vacunadas.
+     * vacunacionesPorFecha: devuelve un mapa, o diccionario, en el que las claves son las fechas y los valores son listas de vacunaciones asociadas a dichas fechas.
+     * **maximoNumTotalVacunasporComunidad:** devuelve un mapa, o diccionario, en el que las claves son las comunidades y los valores son el máximo para el número total de vacunas puestas para cada comunidad.
+	
+##  ListadoMedicamentos: (Clase)
+* **Clase implementada en fp.farmaceutico**
+* **Se pide programar los siguientes métodos:**
+     * **existeMedicamentoSegunTipoAnteriorA:** dado un tipo de medicamento y una fecha, indica si existe un medicamento de dicho tipo posterior a la fecha dada.
+     * **nombreMedicamentosPuntuacionMayorA:** dada una puntuación, devuelve un conjunto con los nombres de los medicamentos con una puntuación mayor a la dada.
+     * **nombreMedicamentoMayorIndiceSomaticoSegunTipoMedicamento:** dado un tipo de medicamento, devuelve el nombre del medicamento con mayor índice somático. En caso de no haber ninguno, se eleva una excepción.
+    * **agrupaTipoMedicamentoSegunPuntuacionMedia:** devuelve un diccionario que asocia a cada tipo de medicamento su puntuación media.
+    * **fechaCatalogoMasFrecuente:** devuelve la fecha del catálogo más frecuente, es decir, la que aparece más veces.
+  

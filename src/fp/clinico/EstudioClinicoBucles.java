@@ -23,6 +23,7 @@ public class EstudioClinicoBucles implements EstudioClinico {
 	public EstudioClinicoBucles(List<PacienteEstudio> paciente) {
 		this.pacientesEstudios = paciente;
 	}
+	
 	public EstudioClinicoBucles() {
 		
 	}
@@ -203,15 +204,19 @@ public class EstudioClinicoBucles implements EstudioClinico {
 		Map<String, Long> res = new HashMap<>();
 		Long mujer = 0L;
 		Long hombre = 0L;
+		Long otro = 0L;
 		for(PacienteEstudio e:this.pacientesEstudios) {
 			if(e.genero().equals("Female")) {
 				mujer = mujer+1;
-			}else {
+			}else if(e.genero().equals("Male")){
 				hombre = hombre+1;
+			}else {
+				otro = otro+1;
 			}
 		}
 		res.put("Female", mujer);
 		res.put("Male", hombre);
+		res.put("Other", otro);
 		return res;
 	}
 
