@@ -7,14 +7,12 @@ Aquí debes añadir la descripción del dataset y un enunciado del dominio del proy
 ## Estructura de las carpetas del proyecto
 
 * **src**: Contiene los diferentes archivos que forman parte del proyecto. Debe estar estructurado en los siguentes paquetes
-     * *fp.factoriamedicamentos*: Paquete que contiene los tipos del proyecto.
-     * *fp.factoriavacunaciones*: Paquete que contiene los tipos del proyecto.
      * *fp.clinico*: Paquete que contiene los tipos del proyecto.
      * *fp.farmaceutico*: Paquete que contiene los tipos del proyecto.
-     * *fp.farmaceutico.test*: Paquete que contiene las clases de test de "fp.farmacutico.
+     * *fp.farmaceutico.test*: Paquete que contiene las clases de test de los tipo de "fp.farmacutico".
      * *fp.utiles*:  Paquete que contiene las clases de utilidad. 
-     * *fp.vacunas*: Paquete que contiene el módulo "Vacunacion".
-
+     * *fp.vacunas*: Paquete que contiene los tipos del proyecto.
+     * *fp.vacunas.test*: Paquete que contiene las clases de test de los tipos de "fp.vacunas".
 * **data**: Contiene el dataset o datasets del proyecto
      * *cca_vacunas_3.csv*: Informacion sobre la vacunacion detodas las comunidades autónomas.
      * *estudio_clinico.csv*: Estudio clínico de la población.
@@ -66,10 +64,17 @@ Encontramos 3 datasets en este proyecto: ccaa_vacunas, compuesto por 7 columnas;
 * **Tipos TestEstudioClinicoStream:** Módulo test de la clase EstudioClinicoStream.
 * **Tipo TipoResidencia:** Enumerado.
 * **Tipo FactoriaMedicamentos:** Clase, contiene el parseo de la clase Medicamento.
+* **Tipo ListadoMedicamentos:** Clase
 * **Tipo Medicamento:** Clase.
 * **Tipo TipoMedicamento:** Enumerado.
-* **Tipo TestMedicamentos:** Clase. Modulo test de la clase Medicamento y FactoriaMedicamentos.
+* **Tipo TestFactoriaMedicamentos:** Clase. Modulo test de la clase FactoriaMedicamentos.
+* **Tipo TestListadoMedicamentos:** Clase. Modulo test de la clase ListadoMedicamentos.
+* **Tipo FactoriaVacunaciones:** Clase, contiene el parseo de la clase Vacunacion
 * **Tipo Vacunacion:** Record
+* **Tipo Vacunaciones:** Clase
+* **Tipo TestFactoriaVacunaciones:** Clase. Modulo de tes de la clase FactoriaVacunaciones.
+* **Tipo TestVacunaciones:** Clase. Modulo de test de la clase Vacunaciones.
+
 
 ### Tipo Persona:
 * **Persona:**
